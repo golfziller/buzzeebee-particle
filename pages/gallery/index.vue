@@ -6,11 +6,14 @@
         v-for="(item, index) in dataImg"
         :key="index"
       >
+       <transition name="slide-fade">
         <img
+        v-show="show"
           @click="onImgClick(index)"
           :src="require(`~/assets/img/${item.source}`)"
           class="img-r img-fluid img-thumbnail"
         />
+         </transition>
       </div>
     </div>
     <ModalImg :startImg="startImg" :dataImages="dataImg"></ModalImg>
@@ -25,8 +28,15 @@ export default {
       dataImg: [],
       totalImg: 12,
       sliding: null,
-      startImg: 0
+      startImg: 0,
+      show: false
     };
+  },
+
+  mounted() {
+    this.$nextTick(() => {
+      this.show = true
+    })
   },
   created() {
     for (let i = 1; i <= this.totalImg; i++) {
@@ -53,5 +63,16 @@ img.img-r {
 }
 div.show-img {
   text-align: center;
+}
+.slide-fade-enter-active {
+  transition: all 2s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
 }
 </style>

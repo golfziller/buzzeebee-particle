@@ -2,10 +2,13 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
+         <transition name="fade">
         <img
+        v-show="show"
           src="~/assets/img/profile-1.jpg"
-          class="img-thumbnail rounded-circle"
+          class=" img-thumbnail rounded-circle"
         />
+         </transition>
       </div>
       <div class="col-md-6">
         <h3>Pongtorn Kitwimonrattana</h3>
@@ -117,7 +120,8 @@ export default {
       perCentReact: 0,
       perCentVueRouter: 0,
       perCentVuex: 0,
-      perCentVue: 0
+      perCentVue: 0,
+      show: false
     }
   },
   mounted() {
@@ -128,6 +132,7 @@ export default {
       this.perCentVueRouter = 65,
       this.perCentVuex = 60,
       this.perCentVue = 70
+      this.show = true
     }, 500)
   },
 };
@@ -135,5 +140,11 @@ export default {
 <style>
 p.text-indent {
   text-indent: 40px;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
