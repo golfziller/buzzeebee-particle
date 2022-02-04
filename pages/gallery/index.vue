@@ -16,7 +16,12 @@
          </transition>
       </div>
     </div>
-    <ModalImg :startImg="startImg" :dataImages="dataImg"></ModalImg>
+    <div class="row">
+      <div class="col-12" style="text-align:center">
+        <nuxt-link to="/" class="btn btn-dark">Back to Profile</nuxt-link>
+      </div>
+    </div>
+    <ModalImg :startImg="startImg" :dataImages="dataImg" @modalHide="onModalHide"></ModalImg>
   </div>
 </template>
 <script>
@@ -48,6 +53,9 @@ export default {
     }
   },
   methods: {
+    onModalHide () {
+      this.startImg = 0
+    },
     onImgClick(index) {
       this.startImg = index
       this.$bvModal.show("my-modal");
