@@ -25,7 +25,7 @@
   </div>
 </template>
 <script>
-import ModalImg from "./components/modalImg.vue";
+import ModalImg from "@/components/gallery/modalImg.vue";
 export default {
   components: { ModalImg },
   data() {
